@@ -22,3 +22,20 @@ maven_install(
         "https://jcenter.bintray.com/",
     ],
 )
+
+http_archive(
+    name = "openjdk8u202_darwin_archive",
+    build_file_content = """
+package(default_visibility = ["//visibility:public"])
+
+java_runtime(
+    name = 'runtime',
+    srcs =  glob(['**']),
+    java='//:Contents/Home/bin/java',
+    java_home='abc'
+)
+""",
+    sha256 = "059f7c18faa6722aa636bbd79bcdff3aee6a6da5b34940b072ea6e3af85bbe1d",
+    strip_prefix = "jdk8u202-b08",
+    urls = ["https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u202-b08/OpenJDK8U-jdk_x64_mac_hotspot_8u202b08.tar.gz"],
+)
